@@ -130,3 +130,5 @@ CORS_ORIGIN_ALLOW_ALL = False
 CORS_ORIGIN_WHITELIST = (
  'http://localhost:8000',
 )
+MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_URL = '/media/'
