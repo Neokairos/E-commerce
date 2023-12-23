@@ -7,14 +7,13 @@ class Category(models.Model):
         return self.name
 
 class Product(models.Model):
+    Seller = models.ForeignKey(User, on_delete=models.CASCADE,default=1)
     name = models.CharField(max_length=200)
-    description = models.TextField
+    description = models.TextField(default="nigga be empty")
     price = models.DecimalField(max_digits=5, decimal_places=2)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    image = models.ImageField(upload_to='products/')
+    image = models.ImageField(upload_to='images/')
 
-    def __str__(self):
-       return self.name
 
 class Cart(models.Model):
    user = models.ForeignKey(User, on_delete=models.CASCADE)

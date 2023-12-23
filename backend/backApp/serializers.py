@@ -7,9 +7,14 @@ class CategorySerializer(serializers.ModelSerializer):
         fields = ['id','name']
 
 class ProductSerializer(serializers.ModelSerializer):
+    image = serializers.SerializerMethodField()
+    category = CategorySerializer()
     class Meta:
         model = Product
-        fields = ['id','name','description','price','category','image']
+        fields = ['id','seller','name','description','price','category','image']
+    def get_image(self, obj):
+        request = self.context.get('request')
+        return request.build_absolute_uri(obj.image.url)
         
  
 class CartSerializer(serializers.ModelSerializer):

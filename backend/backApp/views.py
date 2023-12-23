@@ -7,6 +7,8 @@ from rest_framework.permissions import IsAuthenticated
 class ProductViewSet(viewsets.ModelViewSet):
    queryset = Product.objects.all()
    serializer_class = ProductSerializer
+   def get_serializer_context(self):
+      return {"request": self.request}
 
 class CategoryViewSet(viewsets.ModelViewSet):
    queryset = Category.objects.all()

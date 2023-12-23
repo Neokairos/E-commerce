@@ -79,8 +79,12 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'railway',
+        'USER': 'postgres',
+        'PASSWORD': 'DFaD*1gageg1aFDE1DC5*bc6ef3g-F6c',
+        'HOST': 'roundhouse.proxy.rlwy.net',
+        'PORT': '14745',
     }
 }
 
@@ -128,7 +132,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ORIGIN_ALLOW_ALL = False
 CORS_ORIGIN_WHITELIST = (
- 'http://localhost:8000',
+ 'http://localhost:5173',
+ 'http://127.0.0.1:8000'
+
 )
 MEDIA_ROOT = BASE_DIR / 'media'
 MEDIA_URL = '/media/'
