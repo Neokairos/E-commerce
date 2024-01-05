@@ -1,8 +1,29 @@
 from rest_framework import viewsets
 from django.contrib.auth.models import User
 from .models import Product, Category, Cart, Order, Review
-from .serializers import ProductSerializer, CategorySerializer, CartSerializer, OrderSerializer, ReviewSerializer
+from .serializers import LoginSerializer,ProductSerializer, CategorySerializer, CartSerializer, OrderSerializer, ReviewSerializer, UserSerializer
 from rest_framework.permissions import IsAuthenticated
+from rest_framework_simplejwt.views import TokenObtainPairView
+from django.contrib.auth.decorators import login_required
+from django.http import JsonResponse
+from django.contrib.auth import logout
+
+
+@login_required
+def is_logged(request):
+   return JsonResponse({'is_logged': True if request.user.is_authenticated else False})
+
+def log_out(request):
+   logout(request)
+   return JsonResponse({'is_logged_out': True if not request.user.is_authenticated else False})
+
+class RegistrationViewSet(viewsets.ModelViewSet):
+   serializer_class = UserSerializer
+   http_method_names = ['post']
+
+class LoginViewToken(TokenObtainPairView):
+   serializer_class = LoginSerializer
+
 
 class ProductViewSet(viewsets.ModelViewSet):
    queryset = Product.objects.all()
@@ -25,3 +46,4 @@ class OrderViewSet(viewsets.ModelViewSet):
 class ReviewViewSet(viewsets.ModelViewSet):
    queryset = Review.objects.all()
    serializer_class = ReviewSerializer
+

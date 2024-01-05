@@ -1,0 +1,29 @@
+.input-wrapper {
+	display: flex;
+	align-items: center; /* Align items vertically in the middle */
+}
+
+.form-control {
+	flex-grow: 1; /* Allow the input field to take up remaining space */
+}
+
+.icon-button {
+	position: absolute;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	width: 40px; /* Same width as the padding added to the input field */
+	background: none;
+	border: none;
+	border-radius: 80%;
+}
+
+.zoom-effect {
+	transition: transform 0.2s; /* Animation */
+}
+
+.zoom-effect:hover {
+	transform: scale(
+		1.1
+	); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+}

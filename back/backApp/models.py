@@ -7,7 +7,7 @@ class Category(models.Model):
         return self.name
 
 class Product(models.Model):
-    Seller = models.ForeignKey(User, on_delete=models.CASCADE)
+    seller = models.ForeignKey(User, to_field="username",on_delete=models.CASCADE)
     name = models.CharField(max_length=200)
     description = models.TextField(default="nigga be empty")
     price = models.DecimalField(max_digits=5, decimal_places=2)
